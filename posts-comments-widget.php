@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: This Post's Comments
+Plugin Name: This Post's Comments Widget
 Description: Displays the comments for the current post 
 Author: Sarah Maris
 Version: 1.0
@@ -13,7 +13,7 @@ class Posts_Comments extends WP_Widget {
         'classname' => 'posts_comments',
         'description' => 'A plugin to show the current post comments',
       );
-	    parent::__construct( 'posts_comments', 'Posts Comments', $widget_ops );
+	    parent::__construct( 'posts_comments', 'This Post\'s Comments', $widget_ops );
   }
 	
 	// front-end content
@@ -40,9 +40,11 @@ class Posts_Comments extends WP_Widget {
               $author = $comment -> comment_author;
               $content = $comment -> comment_content;
               $date = $comment -> comment_date;
-              echo '<p>'. $content . '</br>';
-              echo  '<strong>' . $author . '</strong></br>';
-              echo  date_format( new DateTime($date), "d.m.Y" ) . '</p>';
+              echo '<div class="sidebar-comment">';
+              echo '<p><span class="sb-comment-content">'. $content . '</span></br>';
+              echo '<span class="sb-comment-author"><strong>' . $author . '</strong></span></br>';
+              echo '<span class="sb-comment-date">' . date_format( new DateTime($date), "m.d.Y" );
+              echo '</span></p></div>';
           endforeach;
       }
         
